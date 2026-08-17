@@ -1,0 +1,408 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO (Colores, Fuentes y Sombras)
+   ========================================================================== */
+:root {
+  /* Tema Claro (Por Defecto) */
+  --color-fondo-principal: #f8fafc;
+  --color-fondo-tarjeta: #ffffff;
+  --color-fondo-alternativo: #f1f5f9;
+  
+  --color-texto-principal: #0f172a;
+  --color-texto-secundario: #475569;
+  --color-borde: #e2e8f0;
+
+  --color-acento-primario: #2563eb;
+  --color-acento-hover: #1d4ed8;
+  --color-acento-etiqueta: #dbeafe;
+  --color-acento-etiqueta-texto: #1e40af;
+
+  --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --sombra-elevada: 0 10px 15px -3px rgba(0, 0, 0, 0.12);
+  --radio-borde: 10px;
+  --transicion-estandar: all 0.3s ease;
+}
+
+/* Variables cuando se activa el Modo Oscuro vía clase en <body> */
+body.modo-oscuro {
+  --color-fondo-principal: #0b1120;
+  --color-fondo-tarjeta: #1e293b;
+  --color-fondo-alternativo: #111827;
+  
+  --color-texto-principal: #f8fafc;
+  --color-texto-secundario: #94a3b8;
+  --color-borde: #334155;
+
+  --color-acento-primario: #3b82f6;
+  --color-acento-hover: #60a5fa;
+  --color-acento-etiqueta: #1e3a8a;
+  --color-acento-etiqueta-texto: #bfdbfe;
+
+  --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --sombra-elevada: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   2. REINICIO GENERAL (Reset)
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-fondo-principal);
+  color: var(--color-texto-principal);
+  line-height: 1.6;
+  transition: var(--transicion-estandar);
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN
+   ========================================================================== */
+.barra-navegacion {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-fondo-tarjeta);
+  border-bottom: 1px solid var(--color-borde);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  transition: var(--transicion-estandar);
+}
+
+.logo h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--color-acento-primario);
+}
+
+.lista-enlaces {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.lista-enlaces a {
+  text-decoration: none;
+  color: var(--color-texto-secundario);
+  font-weight: 500;
+  transition: var(--transicion-estandar);
+}
+
+.lista-enlaces a:hover {
+  color: var(--color-acento-primario);
+}
+
+/* ==========================================================================
+   4. BOTONES REUTILIZABLES
+   ========================================================================== */
+.boton-principal,
+.boton-secundario {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: var(--transicion-estandar);
+}
+
+.boton-principal {
+  background-color: var(--color-acento-primario);
+  color: #ffffff;
+}
+
+.boton-principal:hover {
+  background-color: var(--color-acento-hover);
+}
+
+.boton-secundario {
+  background-color: transparent;
+  color: var(--color-texto-principal);
+  border-color: var(--color-borde);
+}
+
+.boton-secundario:hover {
+  background-color: var(--color-fondo-alternativo);
+}
+
+/* ==========================================================================
+   5. SECCIÓN HERO (PORTADA)
+   ========================================================================== */
+.seccion-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.hero-contenido {
+  max-width: 750px;
+}
+
+.saludo-destacado {
+  color: var(--color-acento-primario);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.nombre-principal {
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin: 0.5rem 0;
+  letter-spacing: -1px;
+}
+
+.subtitulo-rol {
+  color: var(--color-texto-secundario);
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.descripcion-personal {
+  color: var(--color-texto-secundario);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.grupo-botones-hero {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   6. SECCIONES Y REJILLAS (GRID)
+   ========================================================================== */
+.seccion-general {
+  padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.fondo-alternativo {
+  background-color: var(--color-fondo-alternativo);
+  max-width: 100%;
+  border-top: 1px solid var(--color-borde);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* Rejilla de Habilidades */
+.rejilla-habilidades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.tarjeta-habilidad {
+  background-color: var(--color-fondo-tarjeta);
+  padding: 2rem;
+  border-radius: var(--radio-borde);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+  text-align: center;
+  transition: var(--transicion-estandar);
+}
+
+.tarjeta-habilidad:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-elevada);
+}
+
+.icono-habilidad {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   7. PROYECTOS Y FILTROS
+   ========================================================================== */
+.filtros-proyectos {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.boton-filtro {
+  background: var(--color-fondo-tarjeta);
+  color: var(--color-texto-secundario);
+  border: 1px solid var(--color-borde);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transicion-estandar);
+}
+
+.boton-filtro.activo,
+.boton-filtro:hover {
+  background-color: var(--color-acento-primario);
+  color: #ffffff;
+  border-color: var(--color-acento-primario);
+}
+
+.rejilla-proyectos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tarjeta-proyecto {
+  background-color: var(--color-fondo-tarjeta);
+  border-radius: var(--radio-borde);
+  border: 1px solid var(--color-borde);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: var(--transicion-estandar);
+}
+
+.tarjeta-proyecto:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-elevada);
+}
+
+.imagen-proyecto-simulada {
+  height: 160px;
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.cuerpo-tarjeta {
+  padding: 1.5rem;
+}
+
+.etiqueta-categoria {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--color-acento-etiqueta);
+  color: var(--color-acento-etiqueta-texto);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.cuerpo-tarjeta h3 {
+  margin-bottom: 0.5rem;
+}
+
+.cuerpo-tarjeta p {
+  color: var(--color-texto-secundario);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.tecnologias-usadas {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tecnologias-usadas span {
+  font-size: 0.8rem;
+  background-color: var(--color-fondo-alternativo);
+  color: var(--color-texto-secundario);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-borde);
+}
+
+/* ==========================================================================
+   8. FORMULARIO DE CONTACTO
+   ========================================================================== */
+.subtitulo-contacto {
+  text-align: center;
+  color: var(--color-texto-secundario);
+  margin-bottom: 2rem;
+}
+
+.formulario-estilo {
+  max-width: 550px;
+  margin: 0 auto;
+  background-color: var(--color-fondo-tarjeta);
+  padding: 2.5rem;
+  border-radius: var(--radio-borde);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+}
+
+.campo-formulario {
+  margin-bottom: 1.5rem;
+}
+
+.campo-formulario label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-fondo-principal);
+  color: var(--color-texto-principal);
+  font-size: 0.95rem;
+  transition: var(--transicion-estandar);
+}
+
+.campo-formulario input:focus,
+.campo-formulario textarea:focus {
+  outline: none;
+  border-color: var(--color-acento-primario);
+}
+
+.mensaje-estado {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   9. PIE DE PÁGINA
+   ========================================================================== */
+.pie-pagina {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-fondo-tarjeta);
+  border-top: 1px solid var(--color-borde);
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+}

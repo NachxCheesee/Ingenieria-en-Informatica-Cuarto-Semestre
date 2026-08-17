@@ -1,0 +1,314 @@
+#Creación de DataFrame
+
+import pandas as pd
+matriculas =pd.read_excel("09_MATRICULAS_ED_SUPERIOR_MAULE_2021.xlsx")
+matriculas
+
+#Creación de DataFrame más pequeños de uno existente
+
+matriculas_resumen = matriculas[["ID","EDAD","NOMBRE CARRERA","VALOR ARANCEL (PESOS)","AREA CONOCIMIENTO"]].copy()
+matriculas_resumen
+
+# permite conocer el tamaño de un Dataframe
+
+matriculas.shape
+
+# permite conocer las variables ( nombre de las columnas)
+
+matriculas.count()
+
+#muestra las 3 primeras filas en un data frame
+
+matriculas.head(3)
+
+#muestra las 3 ultimas filas en un data frame
+
+matriculas.tail(3)
+
+#muestra la fila 2
+
+matriculas.loc[[2]]
+
+
+
+
+# selección de una hoja en particular de un archivo en Excel(hay archivos que tienen más de una hoja).
+
+import pandas as pd
+df = pd.read_excel('Encuesta_uso_redes.xlsx', sheet_name = 'Base 1')
+
+# muestra el número de filas
+
+muestra = df.shape[0]
+muestra
+
+
+
+
+# genera un recuento simple en relación a las diferentes categorías de una variable
+
+cuenta_tipo = df.groupby('nombre variable').size()
+cuenta_tipo
+
+
+
+
+
+
+# Generar una tabla con frecuencias absolutas y relativas
+
+cuenta_tipo = df.groupby("Categoría").size()
+
+tabla_1 = pd.DataFrame({
+    'Frecuencia absoluta': cuenta_tipo,
+    'Frecuencia relativa (%)': round(cuenta_tipo /(numero de elementos) * 100, 1)
+})
+
+tabla_1
+
+
+
+
+# Muestra los 10 elementos más frecuentes en una tabla de frecuencia
+
+tabla_2.sort_values('Frecuencia absoluta', ascending= False).head(10)
+
+
+
+
+#Tabla de frecuencia con 4 columnas
+
+cuenta_tipo4 = df1.groupby('Asignaturas reprobadas').size()
+cuenta_tipo4
+
+tabla_3 = pd.DataFrame({
+    'Frecuencia absoluta': cuenta_tipo4,'Frecuencia absoluta acum': cuenta_tipo4.cumsum(),
+    'Frecuencia relativa (%)': round(cuenta_tipo4 /(1000) * 100, 1),'Frecuencia relativa (%) acumulada': round(cuenta_tipo4 /(1000) * 100, 1).cumsum()
+})
+
+tabla_3
+
+
+
+
+
+# Creación de una tabla de frecuencias con 4 columnas para variable cuantitativa continua
+
+#Crearemos una nueva columna llamada Intervalos_feli
+df2['Intervalos_feli'] = pd.cut(df2['Puntaje de felicidad'], bins = 8, include_lowest= True, precision = 2)
+
+#Calcularemos la frecuencia absoluta de la variable Intervalos_feli
+cuenta_intervalos_feli = df2.groupby('Intervalos_feli', observed = True).size()
+
+tabla_4 = pd.DataFrame({
+    'Frecuencia absoluta': cuenta_intervalos_feli,
+    'Frecuencia absoluta acumulada': cuenta_intervalos_feli.cumsum(),
+    'Frecuencia relativa (%)': cuenta_intervalos_feli/140 * 100,
+    'Frecuencia relativa acumulada (%)': (cuenta_intervalos_feli/140 * 100).cumsum()
+})
+round(tabla_4, 1))
+
+
+
+
+# Crear el gráfico de dispersión
+
+import matplotlib.pyplot as plt
+
+# Crear el gráfico de dispersión
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño de la figura
+plt.scatter(df2['Log PIB per cápita'], df2['Puntaje de felicidad'], alpha=0.7) #alpha para transparencia de puntos
+plt.title('Relación entre Log PIB per cápita y Puntaje de Felicidad')
+plt.xlabel('Log PIB per cápita')
+plt.ylabel('Puntaje de Felicidad')
+plt.grid(True) # Agrega una cuadrícula al gráfico
+plt.show()
+
+
+# Crear el gráfico de barra
+
+import matplotlib.pyplot as plt
+#Variables
+categorias_leng = tabla_1.index
+f_leng = tabla_1['Frecuencia absoluta']
+
+#Gráfico
+fig, ax = plt.subplots(figsize = (6,6))
+barras_leng = ax.bar(categorias_leng, f_leng, color = 'green', edgecolor ='black')
+
+#Personalización
+ax.set_title('Distribución de encuestados por ciudad')
+ax.set_xlabel('Ciudad de procedencia')
+ax.set_ylabel('Número de encuestados')
+ax.bar_label(barras_leng)
+plt.xticks(rotation=15) #Rota en 45° las categorías para evitar la superposición
+
+plt.show()
+
+# Crear el gráfico circular
+
+import matplotlib.pyplot as plt
+
+#Variables
+categorias_ocup = tabla_1.index  #Indices de la tabla 1
+h_ocup = tabla_1['Frecuencia relativa (%)']
+
+#Gráfico
+fig,ax = plt.subplots(figsize = (7,5))
+circular_ocup = ax.pie(h_ocup, labels = categorias_ocup, autopct= '%.2f%%')
+
+#Personalización
+ax.set_title('Ciudad de procedencia de los encuestados')
+
+plt.show()
+
+
+
+
+# Crear un histograma
+
+#Variables
+categorias_peso = tabla_2.index
+f_peso = tabla_2['Frecuencia relativa (%)']
+
+#Gráfico
+fig, ax = plt.subplots(figsize = (7,5))
+histograma_edad = ax.bar(categorias_peso.astype(str), f_peso, color = 'green', edgecolor = 'black', width = 1)
+
+#Personalización
+ax.set_title('Peso de los encuestados ')
+ax.set_xlabel('Peso(Kg)')
+ax.set_ylabel('Cantidad de encuestados')
+ax.bar_label(histograma_edad, fmt = '%.2f%%') #El argumento fmt controla la cantidad de decimales a mostrar
+plt.xticks(rotation=45, ha = 'right') #Rota en 45° las categorías para evitar la superposición
+
+plt.show()
+
+
+# Estadisticos de tendencia central y posición
+
+import pandas as pd
+
+
+# Media
+media = df["nombre_variable"].mean()
+
+# Mediana
+mediana = df["nombre_variable"].median()
+
+# Moda (puede haber más de una)
+moda = df["nombre_variable"].mode()
+
+# Percentiles (ejemplo: 25, 50, 75)
+percentil_25 = df["nombre_variable"].quantile(0.25)
+percentil_50 = df["nombre_variable"].quantile(0.50)  # igual a la mediana
+percentil_75 = df["nombre_variable"].quantile(0.75)
+
+
+# muestra todos los estadisticos de la variable
+df["nombre_variable"].describe()
+
+
+
+# Estadisticos de dispersión ( ¿ qué tan alejando están los datos de la media o promedio?)
+
+desviación estandar =  df["nombre_variable"].std()   ( A menor desviación estandar, mayor homogeneidad)
+
+Coef de variación =  desviación estandar / media   ( A menor coef de variación , mayor homogeneidad)
+
+( A mayor homogeneidad significa que la media o el promedio es más representativa de la población)
+
+( La heterogeneidad es lo contrario a la homogeneidad)
+
+
+#Creación de un grafico de dispersión:
+
+fig, ax = plt.subplots(figsize=(6, 4))
+Graf_dispersion = ax.scatter(Valores_indep, Valores_dep)
+
+
+#La covarianza se calcula mediante:
+
+COV = Valores_indep.cov(Valores_dep)
+
+#El coeficiente de correlación de Pearson se obtiene con
+
+CORR = Valores_indep.cov(Valores_dep)
+
+
+_______________________________________________________________________________________________________________________
+Modelo de regresión lineal
+
+# Importar librerías
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# Crear un dataframe
+
+df = pd.read_excel('Encuesta_uso_redes.xlsx', sheet_name = 'Base 1')
+
+
+# Declaramos las variables
+
+variable_x = df['Gasto (miles de $)']
+variable_y = df['Ingresos (miles de $)']
+
+
+#Creación de un grafico de dispersión:
+
+fig, ax = plt.subplots(figsize=(6, 4))
+Graf_dispersion = ax.scatter(variable_x, variable_y)
+
+ax.set_title('Relación entre gastos e ingresos')
+ax.set_xlabel('Gasto (miles de $)')
+ax.set_ylabel('Ingresos (miles de $)')
+plt.show()
+
+#La covarianza se calcula mediante:
+
+cov = variable_x.cov(variable_y)
+
+#El coeficiente de correlación de Pearson se obtiene con:
+
+corr = variable_x.cov(variable_y)
+
+
+# Modelo de regresión lineal:
+
+
+import numpy as np
+
+#Definimos las variables
+variable_x = df_1['visitas_diarias']
+variable_y = df_1['ventas_diarias']
+
+modelo_1 = np.polyfit(variable_x, variable_y, 1)
+
+pendiente_1, intercepto_1 = modelo_1
+
+print(f'Pendiente: {pendiente_1:.2f}\nIntercepto: {intercepto_1:.2f}')
+
+# Grafica de modelo de regresión lineal ( insertar en el algoritmo de grafico de dispersión):
+
+
+ax.plot(variable_x, pendiente_1 * variable_x + intercepto_1, color='red',
+        label= f'y={pendiente_1:.2f}x+{intercepto_1:.2f}')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

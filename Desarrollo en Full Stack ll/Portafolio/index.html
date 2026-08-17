@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio Profesional | NAXO</title>
+  
+  <!-- Enlace a la hoja de estilos externa -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== BARRA DE NAVEGACIÓN ==================== -->
+  <header class="barra-navegacion">
+    <div class="logo">
+      <h2>NAXITO<span>.DEV</span></h2>
+    </div>
+    
+    <nav>
+      <ul class="lista-enlaces">
+        <li><a href="#sobre-mi">Sobre Mí</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Botón interactivo para alternar modo claro/oscuro -->
+    <button id="boton-tema" class="boton-secundario" aria-label="Cambiar tema">
+      🌙 Modo Oscuro
+    </button>
+  </header>
+
+  <!-- ==================== SECCIÓN HERO (PORTADA) ==================== -->
+  <main>
+    <section id="sobre-mi" class="seccion-hero">
+      <div class="hero-contenido">
+        <p class="saludo-destacado">¡Hola! Soy</p>
+        <h1 class="nombre-principal">NAXO</h1>
+        <h2 class="subtitulo-rol">Desarrollador de Software & Estudiante de Informática</h2>
+        <p class="descripcion-personal">
+          Apasionado por la creación de videojuegos, aplicaciones de escritorio y soluciones web modernas.
+          Me enfoco en escribir código estructurado, mantenible y eficiente.
+        </p>
+        <div class="grupo-botones-hero">
+          <a href="#proyectos" class="boton-principal">Ver Mis Proyectos</a>
+          <a href="#contacto" class="boton-secundario">Contáctame</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN DE HABILIDADES ==================== -->
+    <section id="habilidades" class="seccion-general">
+      <h2 class="titulo-seccion">Mis Habilidades</h2>
+      <div class="rejilla-habilidades">
+        
+        <div class="tarjeta-habilidad">
+          <div class="icono-habilidad">💻</div>
+          <h3>Lenguajes</h3>
+          <p>Python, Java, JavaScript, HTML5, CSS3, SQL</p>
+        </div>
+
+        <div class="tarjeta-habilidad">
+          <div class="icono-habilidad">🎮</div>
+          <h3>Motores & Frameworks</h3>
+          <p>Godot Engine, Unity, Spring Boot, CustomTkinter</p>
+        </div>
+
+        <div class="tarjeta-habilidad">
+          <div class="icono-habilidad">🛠️</div>
+          <h3>Herramientas & Bases de Datos</h3>
+          <p>Git, GitHub, Oracle SQL, SQLite, H2 Database</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN DE PROYECTOS ==================== -->
+    <section id="proyectos" class="seccion-general fondo-alternativo">
+      <h2 class="titulo-seccion">Proyectos Destacados</h2>
+
+      <!-- Botones de filtro controlados con JavaScript -->
+      <div class="filtros-proyectos">
+        <button class="boton-filtro activo" data-categoria="todos">Todos</button>
+        <button class="boton-filtro" data-categoria="juegos">Videojuegos</button>
+        <button class="boton-filtro" data-categoria="software">Software / Desktop</button>
+        <button class="boton-filtro" data-categoria="web">Web</button>
+      </div>
+
+      <div id="contenedor-proyectos" class="rejilla-proyectos">
+        
+        <!-- Proyecto 1 -->
+        <article class="tarjeta-proyecto" data-categoria="juegos">
+          <div class="imagen-proyecto-simulada">🎮 Red Block</div>
+          <div class="cuerpo-tarjeta">
+            <span class="etiqueta-categoria">Videojuegos</span>
+            <h3>Trash bot</h3>
+            <p>Juego para pc en 2D desarrollado en Godot Engine con escalado de alta definición y mecánicas dinámicas.</p>
+            <div class="tecnologias-usadas">
+              <span>Godot</span>
+              <span>GDScript</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 2 -->
+        <article class="tarjeta-proyecto" data-categoria="software">
+          <div class="imagen-proyecto-simulada">🛡️ UrlKnight</div>
+          <div class="cuerpo-tarjeta">
+            <span class="etiqueta-categoria">Software</span>
+            <h3>UrlKnight App</h3>
+            <p>Aplicación de escritorio para análisis y gestión de URLs creada con interfaz personalizada en Python.</p>
+            <div class="tecnologias-usadas">
+              <span>Python</span>
+              <span>CustomTkinter</span>
+              <span>GitHub Actions</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 3 -->
+        <article class="tarjeta-proyecto" data-categoria="web">
+          <div class="imagen-proyecto-simulada">🌐 Portafolio Personal</div>
+          <div class="cuerpo-tarjeta">
+            <span class="etiqueta-categoria">Web</span>
+            <h3>Web Portfolio</h3>
+            <p>Sitio web responsivo con soporte de temas, filtrado dinámico en JS y diseño semántico.</p>
+            <div class="tecnologias-usadas">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECCIÓN DE CONTACTO ==================== -->
+    <section id="contacto" class="seccion-general">
+      <h2 class="titulo-seccion">Ponte en Contacto</h2>
+      <p class="subtitulo-contacto">¿Tienes un proyecto en mente o quieres colaborar? Escríbeme:</p>
+      
+      <form id="formulario-contacto" class="formulario-estilo">
+        <div class="campo-formulario">
+          <label for="nombre-usuario">Nombre completo:</label>
+          <input type="text" id="nombre-usuario" name="nombre" placeholder="Ej: Juan Pérez" required />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="correo-usuario">Correo electrónico:</label>
+          <input type="email" id="correo-usuario" name="correo" placeholder="ejemplo@correo.com" required />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="mensaje-usuario">Mensaje:</label>
+          <textarea id="mensaje-usuario" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+
+        <button type="submit" class="boton-principal">Enviar Mensaje</button>
+        <p id="mensaje-estado" class="mensaje-estado"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ==================== PIE DE PÁGINA ==================== -->
+  <footer class="pie-pagina">
+    <p>© 2026 NAXITO POP — Desarrollado con HTML, CSS y JavaScript nativo.</p>
+  </footer>
+
+  <!-- Archivo JavaScript al final del body para que cargue tras el HTML -->
+  <script src="app.js"></script>
+</body>
+</html>
